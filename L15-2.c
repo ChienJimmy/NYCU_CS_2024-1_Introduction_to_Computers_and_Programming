@@ -40,11 +40,8 @@ int main() {
 
     // Place the orbs
     for (int i = 0; i < count; ++i) {
-        printf("+++++++++++++\n"); // Debug
-        print_magic_circle(center_ring, size); // Debug
         insert_next(center_ring, size, getchar());
-        print_magic_circle(center_ring, size); // Debug
-        printf("-------------\n"); // Debug
+        //print_magic_circle(center_ring, size); // Debug
     }
 
     // Print magic circle configuration
@@ -111,7 +108,6 @@ int FindCorbNum(struct head_t *arr, int size){ // 找出所有的 Clone Orb
             cur = cur->next; // 繼續檢查下一個節點
         }
     }
-    printf("Clone Orb Num: %d\n", count); // Debug
     return count;
 }
 int FindandClear(struct head_t *arr, int size, int dyson_target, int times){ // 找出所有的 Dyson Orb 並清除
@@ -147,7 +143,6 @@ int FindandClear(struct head_t *arr, int size, int dyson_target, int times){ // 
 void insert_next(struct head_t *arr, int size, const char c) {
     static int times = 0; // 決定要修改哪個 Stem
     static int count_c = 0; // 計算 Clone Orb 的數量
-    printf("=======insert: %c\n", c); // Debug
     struct node_t *insert = malloc(sizeof(struct node_t)); // 新增一個節點
     if (c == 'R' || c == 'Y' || c == 'G' || c == 'B') { // 如果是普通 Orb
         if (arr[(times)].head == NULL) { // 如果 Stem 是空的
@@ -197,7 +192,6 @@ void insert_next(struct head_t *arr, int size, const char c) {
         // TODO: Clone
         count_c = FindCorbNum(arr, size); // 找出所有Clone Orb的數量
         int target; // 目標 Stem
-        //count_c = count_c % size; // Clone Orb 的數量取餘數
         if (times >= count_c) { // 如果 Clone Orb 的數量小於目前節點的數字
             target = times - count_c; // 目標 Stem 是目前節點的數字減去 Clone Orb 的數量
         }
